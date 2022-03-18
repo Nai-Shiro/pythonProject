@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block left %}
+<h4>Перечень задач</h4>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid col-md6">
+    <table class="table table-bordered">
+        <tr>
+            <th class="th1">ID</th>
+            <th class="th1">Тема</th>
+            <th class="th1">Руководитель</th>
+            <th class="th1">Участники</th>
+            <th class="th1">Длит.(мин)</th>
+            <th class="th1">Начало</th>
+            <th class="th1">Окончание</th>
+            <th class="th1">Завершено?</th>
+            <th></th>
+        </tr>
+        {% for item in jobs%}
+        <tr>
+            <td class="td1">{{item.id}}</td>
+            <td class="header-journ td1">{{item.job}}</td>
+            <td class="td1">{{item.user.name}} {{item.user.surname}}</td>
+            <td class="td1">{{item.collaborators}}</td>
+            <td class="td1">{{item.work_size}}</td>
+            <td class="td1">{{item.start_date}}</td>
+            <td class="td1">{{item.end_date}}</td>
+            <td class="td1" style="text-align: center">
+                {% if item.is_finished %}
+                ДА
+                {% else %}
+                НЕТ
+                {% endif %}
+            </td>
+
+            {% if current_user.is_authenticated and (current_user == item.user or current_user.id == 1) %}
+            <td class="td1">
+                <a href="/edit_job/{{ item.id }}" class="btn btn-warning">
+                    Изменить
+                </a>
+                <a href="/delete_job/{{ item.id }}" class="btn btn-danger">
+                    Удалить
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

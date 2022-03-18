@@ -6,8 +6,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from v6.data.db_session import SqlAlchemyBase
-import v6.data.__all_models
+from data.db_session import SqlAlchemyBase
+import data.__all_models
 
 sys.path.insert(0, 'C:/tools/pythonProject/v6')
 # this is the Alembic Config object, which provides

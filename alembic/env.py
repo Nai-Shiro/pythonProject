@@ -9,7 +9,7 @@ from alembic import context
 from data.db_session import SqlAlchemyBase
 import data.__all_models
 
-sys.path.insert(0, 'C:/tools/pythonProject/v6')
+sys.path.insert(0, 'C:/tools/pythonProject')
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
